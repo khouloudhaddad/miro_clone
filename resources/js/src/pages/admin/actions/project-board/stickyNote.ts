@@ -1,23 +1,52 @@
+import { ref } from "vue";
+import { IStickyNote } from "./StickyNoteTypes";
+
 export function useDragStickyNote() {
-    function dragStickyNote() {
+    const stickyNotes = ref<IStickyNote[]>([] as IStickyNote[]);
+    let count = 0;
+
+    function createStickyNote() {
+        count ++;
+        stickyNotes.value.push({
+            id: count,
+            body: "",
+            color: "#ccc",
+            dragPosition: {
+                x: 0,
+                y: 0,
+            },
+            resizePosition: {
+                x: 0,
+                y: 0,
+            },
+        });
+
+        setTimeout(()=>{
+            dragStickyNote(count)
+        }, 200)
+    }
+
+    function deleteStickyNote(stickyNote: IStickyNote){
+        console.log('deleteStickyNote ', stickyNote)
+    }
+
+    function dragStickyNote(id: number) {
         const stickyNote = document.querySelector(
-            ".sticky-note"
+            ".sticky-note-" + id
         ) as HTMLElement;
         const stickyNoteHandler = document.querySelector(
-            ".sticky-note-handler"
+            ".sticky-note-handler-" + id
         ) as HTMLElement;
 
         const stickyNoteResizer = document.querySelector(
-            ".sticky-note-resizer"
+            ".sticky-note-resizer-" + id
         ) as HTMLElement;
         let newX = 0,
             newY = 0,
             startX = 0,
             startY = 0;
         // Resize
-        let newRX = 0,
-            newRY = 0,
-            startRX = 0,
+        let startRX = 0,
             startRY = 0;
 
         // Resize
@@ -39,13 +68,12 @@ export function useDragStickyNote() {
             document.addEventListener("mouseup", mouseUp);
 
             function mouseMove(e: any) {
-                const newWidth = stickyNoteStartWidth + e.clientX - startRX ;
+                const newWidth = stickyNoteStartWidth + e.clientX - startRX;
                 const newHeight = stickyNoteStartHeight + e.clientY - startRY;
 
                 // Resize
                 stickyNote.style.width = Math.max(newWidth, 150) + "px";
-                stickyNote.style.height =  Math.max(newHeight , 150) + "px";
-
+                stickyNote.style.height = Math.max(newHeight, 150) + "px";
             }
 
             function mouseUp(e: any) {
@@ -80,5 +108,5 @@ export function useDragStickyNote() {
         });
     }
 
-    return { dragStickyNote };
+    return { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote };
 }

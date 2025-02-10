@@ -600,10 +600,6 @@ video {
   position: relative;
 }
 
-.sticky {
-  position: sticky;
-}
-
 .right-0 {
   right: 0px;
 }
@@ -772,16 +768,20 @@ video {
   height: 35.5rem;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-full {
   height: 100%;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-32 {
   max-height: 8rem;
+}
+
+.min-h-40 {
+  min-height: 10rem;
 }
 
 .min-h-60 {
@@ -790,10 +790,6 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.min-h-40 {
-  min-height: 10rem;
 }
 
 .w-4 {
@@ -810,6 +806,10 @@ video {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-\[200px\] {
+  width: 200px;
 }
 
 .w-\[250px\] {
@@ -836,24 +836,8 @@ video {
   width: 100vw;
 }
 
-.w-\[200px\] {
-  width: 200px;
-}
-
 .min-w-0 {
   min-width: 0px;
-}
-
-.min-w-\[\] {
-  min-width: ;
-}
-
-.min-w-\[200\] {
-  min-width: 200;
-}
-
-.min-w-\[200px\] {
-  min-width: 200px;
 }
 
 .max-w-6xl {
@@ -892,12 +876,12 @@ video {
   cursor: default;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .cursor-nw-resize {
   cursor: nw-resize;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .grid-cols-1 {
@@ -1452,11 +1436,6 @@ video {
 .hover\:bg-slate-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity, 1));
-}
-
-.hover\:bg-yellow-100:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 249 195 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-yellow-500:hover {

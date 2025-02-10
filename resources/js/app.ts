@@ -12,6 +12,8 @@ import PersonPlusIcon from "./src/components/icons/PersonPlusIcon.vue";
 import TrashIcon from "./src/components/icons/TrashIcon.vue";
 import ArrowTopIcon from "./src/components/icons/ArrowTopIcon.vue";
 import ArrowDownIcon from "./src/components/icons/ArrowDownIcon.vue";
+import StickyNote from "./src/pages/admin/components/project-board/StickyNote.vue";
+import AddItem from "./src/pages/admin/components/project-board/AddItem.vue";
 
 createApp(App)
     .use(router)
@@ -23,4 +25,6 @@ createApp(App)
     .component("TrashIcon", TrashIcon)
     .component("ArrowTopIcon", ArrowTopIcon)
     .component("ArrowDownIcon", ArrowDownIcon)
+    .component("StickyNote", StickyNote)
+    .component("AddItem", AddItem)
     .mount("#app");

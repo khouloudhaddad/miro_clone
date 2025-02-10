@@ -1,28 +1,23 @@
 <script lang="ts" setup>
 import { app } from "../../config/config";
-import AddItem from "./components/project-board/AddItem.vue";
 import ColorPalette from "./components/project-board/ColorPalette.vue";
 import UndoRedo from "./components/project-board/UndoRedo.vue";
 import { useDragStickyNote } from "./actions/project-board/stickyNote";
 import { onMounted } from "vue";
 
-const {dragStickyNote} = useDragStickyNote();
+const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
+  useDragStickyNote();
 
-onMounted(()=>{
-    setTimeout(() => dragStickyNote(), 2000)
-})
-
+//  
 </script>
 
 <template>
   <div class="bg-slate-100">
     <div class="flex">
       <div class="bg-slate-200 h-screen w-[50px]">
-
-        <AddItem />
+        <AddItem @createStickyNote="createStickyNote" />
         <ColorPalette />
         <UndoRedo />
-
       </div>
 
       <div class="bg-slate-200 w-screen">
@@ -57,26 +52,10 @@ onMounted(()=>{
 
         <!-- main section -->
         <div class="grid md:grid-cols-4 gap-4 p-4">
-          <div
-            class="flex flex-col sticky-note bg-yellow-400 min-h-40 w-[200px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500"
-          >
-            <div class="card-header w-full flex items-center justify-between">
-              <div class="hover:bg-slate-100 p-1 rounded-md">
-                <TrashIcon />
-              </div>
-              <div  class="hover:bg-slate-100 sticky-note-handler p-1 rounded-md">
-                <ArrowTopIcon />
-              </div>
-            </div>
-            <div class="card-body w-full h-full p-2" contenteditable="true">
-              Type your content here...
-            </div>
-            <div class="flex justify-end">
-                <div class="cursor-nw-resize sticky-note-resizer">
-                    <ArrowDownIcon />
-                </div>
-            </div>
-          </div>
+          <stickyNote
+            @deleteStickyNote="deleteStickyNote"
+            :sticky-notes="stickyNotes"
+          />
         </div>
       </div>
     </div>
