@@ -792,6 +792,10 @@ video {
   min-height: 100vh;
 }
 
+.min-h-40 {
+  min-height: 10rem;
+}
+
 .w-4 {
   width: 1rem;
 }
@@ -832,8 +836,24 @@ video {
   width: 100vw;
 }
 
+.w-\[200px\] {
+  width: 200px;
+}
+
 .min-w-0 {
   min-width: 0px;
+}
+
+.min-w-\[\] {
+  min-width: ;
+}
+
+.min-w-\[200\] {
+  min-width: 200;
+}
+
+.min-w-\[200px\] {
+  min-width: 200px;
 }
 
 .max-w-6xl {
@@ -874,6 +894,10 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-nw-resize {
+  cursor: nw-resize;
 }
 
 .grid-cols-1 {

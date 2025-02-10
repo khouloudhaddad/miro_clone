@@ -58,7 +58,7 @@ onMounted(()=>{
         <!-- main section -->
         <div class="grid md:grid-cols-4 gap-4 p-4">
           <div
-            class="flex flex-col sticky-note bg-yellow-400 items-center min-h-60 shadow-md p-4 rounded-md cursor-pointer hover:bg-yellow-500"
+            class="flex flex-col sticky-note bg-yellow-400 min-h-40 w-[200px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500"
           >
             <div class="card-header w-full flex items-center justify-between">
               <div class="hover:bg-slate-100 p-1 rounded-md">
@@ -68,8 +68,13 @@ onMounted(()=>{
                 <ArrowTopIcon />
               </div>
             </div>
-            <div class="card-body w-full h-full p-4" contenteditable="true">
+            <div class="card-body w-full h-full p-2" contenteditable="true">
               Type your content here...
+            </div>
+            <div class="flex justify-end">
+                <div class="cursor-nw-resize sticky-note-resizer">
+                    <ArrowDownIcon />
+                </div>
             </div>
           </div>
         </div>
