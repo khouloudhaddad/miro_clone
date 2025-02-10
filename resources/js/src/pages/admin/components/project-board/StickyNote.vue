@@ -2,7 +2,7 @@
     import { IStickyNote } from "../../actions/project-board/StickyNoteTypes";
 
     defineProps<{
-    stickyNotes: IStickyNote[];
+        stickyNotes: IStickyNote[];
     }>();
 
     const emit = defineEmits<{ (e: "deleteStickyNote", stickyNote: IStickyNote): void }>();
@@ -13,8 +13,8 @@
     v-for="stickyNote in stickyNotes"
     :key="stickyNote.id"
     :class="
-      'flex flex-col sticky-note bg-yellow-400 min-h-40 w-[200px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500 sticky-note-' +
-      stickyNote.id
+      'flex flex-col sticky-note min-h-40 w-[200px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500 sticky-note-' +
+      stickyNote.id +' '+ stickyNote.color
     "
   >
     <div class="card-header w-full flex items-center justify-between">

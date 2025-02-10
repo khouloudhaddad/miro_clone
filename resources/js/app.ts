@@ -3,6 +3,7 @@ import "./bootstrap";
 import { createApp } from "vue";
 import App from "./src/App.vue";
 import router from "./src/router";
+import { createPinia } from "pinia";
 
 import RedoIcon from "./src/components/icons/RedoIcon.vue";
 import StickyNoteIcon from "./src/components/icons/StickyNoteIcon.vue";
@@ -14,6 +15,11 @@ import ArrowTopIcon from "./src/components/icons/ArrowTopIcon.vue";
 import ArrowDownIcon from "./src/components/icons/ArrowDownIcon.vue";
 import StickyNote from "./src/pages/admin/components/project-board/StickyNote.vue";
 import AddItem from "./src/pages/admin/components/project-board/AddItem.vue";
+import ColorPalette from "./src/pages/admin/components/project-board/ColorPalette.vue";
+import { useStickyNoteStore } from "./src/store/stickyNote";
+
+const pinia = createPinia();
+const stickyNoteStore = useStickyNoteStore(pinia)
 
 createApp(App)
     .use(router)
@@ -27,4 +33,6 @@ createApp(App)
     .component("ArrowDownIcon", ArrowDownIcon)
     .component("StickyNote", StickyNote)
     .component("AddItem", AddItem)
+    .component("ColorPalette", ColorPalette)
+    .use(pinia)
     .mount("#app");

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { app } from "../../config/config";
-import ColorPalette from "./components/project-board/ColorPalette.vue";
 import UndoRedo from "./components/project-board/UndoRedo.vue";
 import { useDragStickyNote } from "./actions/project-board/stickyNote";
 import { onMounted } from "vue";
@@ -8,7 +7,16 @@ import { onMounted } from "vue";
 const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
   useDragStickyNote();
 
-//  
+  function changeStickyNoteColor(stickyNoteId: number, color: string){
+    for(let i = 0; i< stickyNotes.value.length; i++){
+       if(stickyNotes.value[i].id === stickyNoteId){
+        stickyNotes.value[i].color = color
+       }
+    }
+  }
+// onMounted(() => {
+//   setTimeout(() => dragStickyNote(), 2000);
+// });
 </script>
 
 <template>
@@ -16,7 +24,7 @@ const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
     <div class="flex">
       <div class="bg-slate-200 h-screen w-[50px]">
         <AddItem @createStickyNote="createStickyNote" />
-        <ColorPalette />
+        <ColorPalette :stickyNotes="stickyNotes" @changeStickyNoteColor="changeStickyNoteColor" />
         <UndoRedo />
       </div>
 

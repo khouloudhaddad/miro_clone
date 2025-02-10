@@ -600,6 +600,10 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -1108,11 +1112,6 @@ video {
 .bg-yellow-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 224 71 / var(--tw-bg-opacity, 1));
-}
-
-.bg-yellow-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 204 21 / var(--tw-bg-opacity, 1));
 }
 
 .fill-red-500 {

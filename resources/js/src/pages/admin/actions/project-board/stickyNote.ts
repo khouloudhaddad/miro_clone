@@ -1,16 +1,20 @@
 import { ref } from "vue";
 import { IStickyNote } from "./StickyNoteTypes";
+import { useStickyNoteStore } from "../../../../store/stickyNote";
+const stickyNoteStore = useStickyNoteStore();
 
 export function useDragStickyNote() {
     const stickyNotes = ref<IStickyNote[]>([] as IStickyNote[]);
     let count = 0;
 
     function createStickyNote() {
-        count ++;
+        count++;
+        let color = getRandomColorClass();
+        console.log(color);
         stickyNotes.value.push({
             id: count,
             body: "",
-            color: "#ccc",
+            color: color,
             dragPosition: {
                 x: 0,
                 y: 0,
@@ -21,13 +25,26 @@ export function useDragStickyNote() {
             },
         });
 
-        setTimeout(()=>{
-            dragStickyNote(count)
-        }, 200)
+        stickyNoteStore.stickyNote.id = count
+
+        setTimeout(() => {
+            dragStickyNote(count);
+        }, 200);
     }
 
-    function deleteStickyNote(stickyNote: IStickyNote){
-        console.log('deleteStickyNote ', stickyNote)
+    function deleteStickyNote(stickyNote: IStickyNote) {
+        console.log("deleteStickyNote ", stickyNote);
+    }
+
+    function getRandomColorClass() {
+        const colorClasses = [
+            "bg-blue-300",
+            "bg-indigo-300",
+            "bg-yellow-300",
+            "bg-pink-300",
+        ];
+        const randomIndex = Math.floor(Math.random() * colorClasses.length);
+        return colorClasses[randomIndex];
     }
 
     function dragStickyNote(id: number) {
@@ -55,6 +72,7 @@ export function useDragStickyNote() {
 
         //Resize
         stickyNoteResizer.addEventListener("mousedown", function (e: any) {
+            stickyNoteStore.stickyNote.id = id;
             startRX = e.clientX;
             startRY = e.clientY;
 
@@ -83,6 +101,7 @@ export function useDragStickyNote() {
 
         //Drag
         stickyNoteHandler.addEventListener("mousedown", function (e: any) {
+            stickyNoteStore.stickyNote.id = id;
             startX = e.clientX;
             startY = e.clientY;
 
