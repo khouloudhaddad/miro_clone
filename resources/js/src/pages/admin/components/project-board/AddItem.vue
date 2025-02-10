@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-    const emit = defineEmits<{ (e: "createStickyNote"): void }>();
+    const emit = defineEmits<{ (e: "createStickyNote"): void,
+    (e: "createMiniTextEditor"):void
+     }>();
 </script>
 
 <template>
@@ -16,6 +18,7 @@
     </li>
 
     <li
+    @click="emit('createMiniTextEditor')"
       class="flex flex-row items-center cursor-pointer p-2 hover:bg-slate-100"
     >
       <span class="icon">

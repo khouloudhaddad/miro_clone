@@ -3,14 +3,26 @@ import { app } from "../../config/config";
 import UndoRedo from "./components/project-board/UndoRedo.vue";
 import { useDragStickyNote } from "./actions/project-board/stickyNote";
 import { onMounted } from "vue";
+import { useDragMiniTextEditor } from "./actions/project-board/MiniTextEditor";
 
 const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
   useDragStickyNote();
+
+  const { dragMiniTextEditor, createMiniTextEditor, miniTextEditors, deleteMiniTextEditor } =
+  useDragMiniTextEditor();
 
   function changeStickyNoteColor(stickyNoteId: number, color: string){
     for(let i = 0; i< stickyNotes.value.length; i++){
        if(stickyNotes.value[i].id === stickyNoteId){
         stickyNotes.value[i].color = color
+       }
+    }
+  }
+
+  function changeMiniTextEditorColor(miniTextEditorId: number, color: string){
+    for(let i = 0; i< miniTextEditors.value.length; i++){
+       if(miniTextEditors.value[i].id === miniTextEditorId){
+        miniTextEditors.value[i].color = color
        }
     }
   }
@@ -23,7 +35,7 @@ const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
   <div class="bg-slate-100">
     <div class="flex">
       <div class="bg-slate-200 h-screen w-[50px]">
-        <AddItem @createStickyNote="createStickyNote" />
+        <AddItem @createStickyNote="createStickyNote" @createMiniTextEditor="createMiniTextEditor" />
         <ColorPalette :stickyNotes="stickyNotes" @changeStickyNoteColor="changeStickyNoteColor" />
         <UndoRedo />
       </div>
@@ -64,6 +76,10 @@ const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
             @deleteStickyNote="deleteStickyNote"
             :sticky-notes="stickyNotes"
           />
+          <MiniTextEditor
+          :miniTextEditors="miniTextEditors"
+          @deleteMiniTextEditor="deleteMiniTextEditor"
+          @changeMiniTextEditorColor="changeMiniTextEditorColor" />
         </div>
       </div>
     </div>

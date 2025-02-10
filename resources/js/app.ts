@@ -5,34 +5,40 @@ import App from "./src/App.vue";
 import router from "./src/router";
 import { createPinia } from "pinia";
 
-import RedoIcon from "./src/components/icons/RedoIcon.vue";
-import StickyNoteIcon from "./src/components/icons/StickyNoteIcon.vue";
-import UndoIcon from "./src/components/icons/UndoIcon.vue";
-import DocumentIcon from "./src/components/icons/DocumentIcon.vue";
-import PersonPlusIcon from "./src/components/icons/PersonPlusIcon.vue";
-import TrashIcon from "./src/components/icons/TrashIcon.vue";
-import ArrowTopIcon from "./src/components/icons/ArrowTopIcon.vue";
-import ArrowDownIcon from "./src/components/icons/ArrowDownIcon.vue";
+const importIcons = import.meta.glob("./src/components/icons/**/*.vue");
+function registerIcons(app: any) {
+    for (const filePath of Object.keys(importIcons)) {
+        const fileArray = filePath.split("/");
+        const fileName = fileArray.pop();
+        const realFileName = fileName?.replace(".vue", "");
+
+        importIcons[filePath]()
+            .then(function (data) {
+                app.component(realFileName, (data as any)?.default);
+            })
+            .catch((error) => console.log(error));
+    }
+}
+
 import StickyNote from "./src/pages/admin/components/project-board/StickyNote.vue";
 import AddItem from "./src/pages/admin/components/project-board/AddItem.vue";
 import ColorPalette from "./src/pages/admin/components/project-board/ColorPalette.vue";
 import { useStickyNoteStore } from "./src/store/stickyNote";
+import { useMiniTextEditorStore } from "./src/store/miniTextEditor";
+import MiniTextEditor from "./src/pages/admin/components/project-board/MiniTextEditor.vue";
 
 const pinia = createPinia();
-const stickyNoteStore = useStickyNoteStore(pinia)
+const stickyNoteStore = useStickyNoteStore(pinia);
+const miniTextEditorStore = useMiniTextEditorStore(pinia);
 
-createApp(App)
-    .use(router)
-    .component("RedoIcon", RedoIcon)
-    .component("StickyNoteIcon", StickyNoteIcon)
-    .component("UndoIcon", UndoIcon)
-    .component("DocumentIcon", DocumentIcon)
-    .component("PersonPlusIcon", PersonPlusIcon)
-    .component("TrashIcon", TrashIcon)
-    .component("ArrowTopIcon", ArrowTopIcon)
-    .component("ArrowDownIcon", ArrowDownIcon)
-    .component("StickyNote", StickyNote)
-    .component("AddItem", AddItem)
-    .component("ColorPalette", ColorPalette)
-    .use(pinia)
-    .mount("#app");
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
+registerIcons(app);
+
+app.component("StickyNote", StickyNote);
+app.component("AddItem", AddItem);
+app.component("ColorPalette", ColorPalette);
+app.component("MiniTextEditor", MiniTextEditor);
+
+app.mount("#app");
