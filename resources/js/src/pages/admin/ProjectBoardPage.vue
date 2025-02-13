@@ -3,7 +3,7 @@ import { app } from "../../config/config";
 import UndoRedo from "./components/project-board/UndoRedo.vue";
 import { useDragStickyNote } from "./actions/project-board/stickyNote";
 import { onMounted } from "vue";
-import { useDragMiniTextEditor } from "./actions/project-board/MiniTextEditor";
+import { useDragMiniTextEditor } from "./actions/project-board/editor/MiniTextEditor";
 
 const { dragStickyNote, createStickyNote, stickyNotes, deleteStickyNote } =
   useDragStickyNote();

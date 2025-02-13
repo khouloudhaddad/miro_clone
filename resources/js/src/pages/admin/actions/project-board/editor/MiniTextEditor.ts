@@ -1,9 +1,11 @@
 import { ref } from "vue";
-import { IMiniTextEditor } from "./MiniTextEditorTypes";
-import { useMiniTextEditorStore } from "../../../../store/miniTextEditor";
+import { IMiniTextEditor } from "../MiniTextEditorTypes";
+import { useMiniTextEditorStore } from "../../../../../store/miniTextEditor";
+import { useEditor } from "./editor";
 const miniTextEditorStore = useMiniTextEditorStore();
 
 export function useDragMiniTextEditor() {
+    const { applyBold } = useEditor();
     const miniTextEditors = ref<IMiniTextEditor[]>([] as IMiniTextEditor[]);
     let count = 0;
 
@@ -125,6 +127,8 @@ export function useDragMiniTextEditor() {
                 document.removeEventListener("mousemove", mouseMove);
             }
         });
+
+        applyBold(id);
     }
 
     return { dragMiniTextEditor, createMiniTextEditor, miniTextEditors, deleteMiniTextEditor };

@@ -816,8 +816,8 @@ video {
   width: 250px;
 }
 
-.w-\[350px\] {
-  width: 350px;
+.w-\[340px\] {
+  width: 340px;
 }
 
 .w-\[50px\] {
@@ -1141,6 +1141,11 @@ video {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .px-2 {
