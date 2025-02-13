@@ -16,7 +16,7 @@ const emit = defineEmits<{
   <div
     v-for="miniTextEditor in miniTextEditors"
     :key="miniTextEditor.id"
-    :class="'flex flex-col sticky-note min-h-40 w-[350px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500 text-editor-' + miniTextEditor.id "
+    :class="'flex flex-col sticky-note min-h-40 w-[340px] shadow-md p-1 rounded-md cursor-pointer hover:bg-yellow-500 text-editor-' + miniTextEditor.id "
   >
     <div class="card-header w-full flex items-center justify-between">
       <div

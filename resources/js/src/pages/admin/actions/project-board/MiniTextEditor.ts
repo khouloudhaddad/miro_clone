@@ -90,7 +90,7 @@ export function useDragMiniTextEditor() {
                 const newHeight = miniTextEditorstartHeight + e.clientY - startRY;
 
                 // Resize
-                miniTextEditor.style.width = Math.max(newWidth, 150) + "px";
+                // miniTextEditor.style.width = Math.max(newWidth, 150) + "px";
                 miniTextEditor.style.height = Math.max(newHeight, 150) + "px";
             }
 
