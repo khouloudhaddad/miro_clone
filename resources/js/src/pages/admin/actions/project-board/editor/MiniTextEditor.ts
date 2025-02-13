@@ -5,7 +5,7 @@ import { useEditor } from "./editor";
 const miniTextEditorStore = useMiniTextEditorStore();
 
 export function useDragMiniTextEditor() {
-    const { applyBold } = useEditor();
+    const { applyBold, applyItalic } = useEditor();
     const miniTextEditors = ref<IMiniTextEditor[]>([] as IMiniTextEditor[]);
     let count = 0;
 
@@ -129,6 +129,7 @@ export function useDragMiniTextEditor() {
         });
 
         applyBold(id);
+        applyItalic(id);
     }
 
     return { dragMiniTextEditor, createMiniTextEditor, miniTextEditors, deleteMiniTextEditor };
